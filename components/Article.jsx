@@ -1,14 +1,7 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 
-function Article() {
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    fetch("https://gorest.co.in/public/v2/posts")
-      .then((response) => response.json())
-      .then((data) => setPosts(data));
-  }, []);
+function Article({ posts }) {
   return (
     <>
       {posts.map((item) => (

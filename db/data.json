@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "title": "Title ini tilte",
+      "body": "body ygy",
+      "date": "Jumat, 24 November 2023 pukul 10.41.04 WIB",
+      "image": "/blog.jpg",
+      "comments": [],
+      "id": 12
+    },
+    {
+      "title": "settttttttttttttttttt",
+      "body": "2222222222222222222222222222",
+      "date": "Jumat, 24 November 2023 pukul 10.43.42 WIB",
+      "image": "/blog.jpg",
+      "comments": [],
+      "id": 13
+    },
+    {
+      "title": "Hello world",
+      "body": "this is my first post",
+      "date": "Jumat, 24 November 2023 pukul 10.44.56 WIB",
+      "image": "/blog.jpg",
+      "comments": [],
+      "id": 14
+    }
+  ]
+}
