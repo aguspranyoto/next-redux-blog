@@ -4,12 +4,25 @@ import React from "react";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPosts } from "@/store/postsSlice";
+import { getPosts, deletePostAsync } from "@/store/postsSlice";
 import StatusCode from "@/utils/StatusCode";
 
-function Article() {
+function Article({ type }) {
   const dispatch = useDispatch();
   const { data: posts, status } = useSelector((state) => state.posts);
+
+  const handleDelete = (id) => {
+    // Show a confirmation dialog
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this post?"
+    );
+
+    // If the user confirms, proceed with deletion
+    if (isConfirmed) {
+      // Dispatch the deletePostAsync action with the post ID
+      dispatch(deletePostAsync(id));
+    }
+  };
 
   useEffect(() => {
     dispatch(getPosts());
@@ -50,16 +63,40 @@ function Article() {
 
   return (
     <>
-      {posts.length &&
+      {posts &&
         posts.map((item) => (
           <div
             className="mb-3 border border-gray-300 p-4 hover:shadow-lg"
             key={item.id}
           >
-            <Link href={`/admin/update/${item.id}`}>
-              <h3 className="text-sm font-bold text-slate-700">{item.title}</h3>
-              <p className="text-xs text-slate-700">{item.body}</p>
-            </Link>
+            <div className="flex justify-between items-center gap-6">
+              <div>
+                <h3 className="text-sm font-bold text-slate-700">
+                  {item.title}
+                </h3>
+                <p className="text-xs text-slate-700">{item.body}</p>
+              </div>
+
+              <div className="flex gap-1">
+                {type !== "home" ? (
+                  <>
+                    <Link href={`/admin/update/${item.id}`}>
+                      <button className="btn btn-sm btn-warning text-base-100">
+                        Edit
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="btn btn-sm btn-error text-base-100"
+                    >
+                      Delete
+                    </button>
+                  </>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
           </div>
         ))}
     </>

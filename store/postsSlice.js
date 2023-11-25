@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import StatusCode from "@/utils/StatusCode";
 
-// Fungsi untuk melakukan POST request ke server
 const addPost = async (postData) => {
   const response = await fetch("http://localhost:8800/posts", {
     method: "POST",
@@ -34,6 +33,23 @@ const updatePost = async (id, postData) => {
   return response.json();
 };
 
+const deletePost = async (id) => {
+  const response = await fetch(`http://localhost:8800/posts/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    // Handle the case where the deletion was not successful
+    throw new Error("Failed to delete post");
+  }
+
+  // Return the ID of the deleted post
+  return id;
+};
+
 // Membuat async thunk untuk fetch data
 export const getPosts = createAsyncThunk("posts/get", async () => {
   const data = await fetch("http://localhost:8800/posts");
@@ -63,6 +79,14 @@ export const updatePostAsync = createAsyncThunk(
   "posts/updatePost",
   async ({ id, postData }) => {
     const response = await updatePost(id, postData);
+    return response;
+  }
+);
+
+export const deletePostAsync = createAsyncThunk(
+  "posts/deletePost",
+  async (id) => {
+    const response = await deletePost(id);
     return response;
   }
 );
@@ -117,14 +141,23 @@ const postsSlice = createSlice({
       })
       .addCase(updatePostAsync.fulfilled, (state, action) => {
         state.status = StatusCode.IDLE;
-
-        // Update the state with the updated post
-        const updatedPost = action.payload; // Assuming the API returns the updated post
+        const updatedPost = action.payload;
         state.data = state.data.map((post) =>
           post.id === updatedPost.id ? updatedPost : post
         );
       })
       .addCase(updatePostAsync.rejected, (state, action) => {
+        state.status = StatusCode.ERROR;
+      });
+    builder
+      .addCase(deletePostAsync.pending, (state) => {
+        state.status = StatusCode.LOADING;
+      })
+      .addCase(deletePostAsync.fulfilled, (state, action) => {
+        state.status = StatusCode.IDLE;
+        state.data = state.data.filter((post) => post.id !== action.payload);
+      })
+      .addCase(deletePostAsync.rejected, (state, action) => {
         state.status = StatusCode.ERROR;
       });
   },

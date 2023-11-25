@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "@/store/postsSlice";
 import StatusCode from "@/utils/StatusCode";
 
+//{ product.displayImage && ( <Image src={product.displayImage} width="300" height="500"  /> ) }
+
 const Popular = () => {
   const dispatch = useDispatch();
   const { data: posts, status } = useSelector((state) => state.posts);
@@ -71,13 +73,15 @@ const Popular = () => {
               >
                 <div className="w-20 flex-none">
                   <Link href={`/detail/${item.id}`}>
-                    <Image
-                      src={item.image}
-                      width={100}
-                      height={100}
-                      className="aspect-w-3 aspect-h-4"
-                      alt="popular image"
-                    />{" "}
+                    {item.image && (
+                      <Image
+                        src={item.image}
+                        width={100}
+                        height={100}
+                        className="aspect-w-3 aspect-h-4"
+                        alt="popular image"
+                      />
+                    )}
                   </Link>
                 </div>
                 <div>

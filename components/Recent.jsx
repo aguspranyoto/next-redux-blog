@@ -65,13 +65,15 @@ const Recent = () => {
               >
                 <div className="w-20 flex-none">
                   <Link href={`/detail/${item.id}`}>
-                    <Image
-                      src={item.image}
-                      width={100}
-                      height={100}
-                      className="aspect-w-3 aspect-h-4"
-                      alt="popular image"
-                    />{" "}
+                    {item.image && (
+                      <Image
+                        src={item.image}
+                        width={100}
+                        height={100}
+                        className="aspect-w-3 aspect-h-4"
+                        alt="popular image"
+                      />
+                    )}
                   </Link>
                 </div>
                 <div>
