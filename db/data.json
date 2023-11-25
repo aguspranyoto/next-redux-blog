@@ -1,12 +1,11 @@
 {
   "posts": [
     {
-      "title": "Title ini tilte",
-      "body": "body ygy",
-      "date": "Jumat, 24 November 2023 pukul 10.41.04 WIB",
+      "id": 12,
+      "title": "tes update",
+      "body": "tes upadte body",
       "image": "/blog.jpg",
-      "comments": [],
-      "id": 12
+      "comments": []
     },
     {
       "title": "settttttttttttttttttt",
@@ -17,12 +16,145 @@
       "id": 13
     },
     {
-      "title": "Hello world",
+      "title": "HRMMMMMMMMMMMMMM",
+      "body": "this is it",
+      "date": "Jumat, 24 November 2023 pukul 10.44.56 WIB",
+      "image": "/blog.jpg",
+      "comments": [
+        {
+          "id": 5,
+          "comment": "Hello",
+          "user": "agus",
+          "date": "Jumat, 24 November 2023 pukul 10.41.04 WIB"
+        },
+        {
+          "id": 6,
+          "comment": "Hello",
+          "user": "agus",
+          "date": "Jumat, 24 November 2023 pukul 10.41.04 WIB"
+        }
+      ],
+      "id": 14
+    },
+    {
+      "title": "WORRRRRRRRRRRRLD",
       "body": "this is my first post",
       "date": "Jumat, 24 November 2023 pukul 10.44.56 WIB",
       "image": "/blog.jpg",
+      "comments": [
+        {
+          "id": 7,
+          "comment": "Hello",
+          "user": "agus",
+          "date": "Jumat, 24 November 2023 pukul 10.41.04 WIB"
+        },
+        {
+          "id": 8,
+          "comment": "Hello",
+          "user": "agus",
+          "date": "Jumat, 24 November 2023 pukul 10.41.04 WIB"
+        }
+      ],
+      "id": 15
+    },
+    {
+      "title": "Hello indo",
+      "body": "Indonesiaaaaaaaaaaaaaaaaaaaaaaaa",
+      "date": "Jumat, 24 November 2023 pukul 10.44.56 WIB",
+      "image": "/blog.jpg",
+      "comments": [
+        {
+          "id": 9,
+          "comment": "Hello",
+          "user": "agus",
+          "date": "Jumat, 24 November 2023 pukul 10.41.04 WIB"
+        }
+      ],
+      "id": 16
+    },
+    {
+      "title": "Cara Menggunakan React Js Dipadukan dengan Next Js 2023",
+      "body": "React adalah pustaka JavaScript yang digunakan untuk membangun antarmuka pengguna yang interaktif. Oleh Karena itu, gunakan next js sekarang juga!",
+      "date": "Jumat, 24 November 2023 pukul 10.44.56 WIB",
+      "image": "/blog.jpg",
+      "comments": [
+        {
+          "id": 10,
+          "comment": "Hello",
+          "user": "agus",
+          "date": "Jumat, 24 November 2023 pukul 10.41.04 WIB"
+        }
+      ],
+      "id": 17
+    },
+    {
+      "title": "Polisss",
+      "body": "this is it",
+      "date": "Jumat, 24 November 2023 pukul 10.44.56 WIB",
+      "image": "/blog.jpg",
+      "comments": [
+        {
+          "id": 3,
+          "comment": "Hello",
+          "user": "agus",
+          "date": "Jumat, 24 November 2023 pukul 10.41.04 WIB"
+        },
+        {
+          "id": 4,
+          "comment": "Hello",
+          "user": "agus",
+          "date": "Jumat, 24 November 2023 pukul 10.41.04 WIB"
+        }
+      ],
+      "id": 18
+    },
+    {
+      "title": "ssdd",
+      "body": "aaaaaaaaaaaa",
+      "date": "2023-11-25T06:38:43.177Z",
+      "image": "/blog.jpg",
       "comments": [],
-      "id": 14
+      "id": 19
+    },
+    {
+      "title": "tes posting baru",
+      "body": "tes tes tes\n",
+      "date": "Sat Nov 25 2023",
+      "image": "/blog.jpg",
+      "comments": [],
+      "id": 20
+    },
+    {
+      "title": "hi ini postingan baru ku loh",
+      "body": "ini adalah body dari postingan ku",
+      "date": "Sat Nov 25 2023",
+      "image": "/blog.jpg",
+      "comments": [],
+      "id": 21
+    },
+    {
+      "title": "tes post lagi nich",
+      "body": "ini body postingan aku yaaaaaaaaaaaaaaaa",
+      "date": "Sat Nov 25 2023",
+      "image": "/blog.jpg",
+      "comments": [],
+      "id": 22
+    },
+    {
+      "id": 23,
+      "title": "tes post lagi nich",
+      "body": "ini updatedddd",
+      "date": "Sat Nov 25 2023",
+      "image": "/blog.jpg",
+      "comments": []
+    },
+    {
+      "title": "wwwwwwwwwwwww",
+      "body": "xxxxxxxxxxxx",
+      "date": "Sat Nov 25 2023",
+      "image": "/blog.jpg",
+      "comments": [],
+      "id": 24
     }
   ]
 }

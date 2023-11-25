@@ -5,7 +5,9 @@ import Recent from "./Recent";
 import Article from "./Article";
 import ArticleDetail from "./ArticleDetail";
 import Home from "./Home";
-import AddPostForm from "./AddPostForm";
+import PostForm from "./PostForm";
+import Comments from "./Comments";
+import Admin from "./Admin";
 
 export {
   Header,
@@ -15,5 +17,7 @@ export {
   Article,
   ArticleDetail,
   Home,
-  AddPostForm,
+  PostForm,
+  Comments,
+  Admin,
 };

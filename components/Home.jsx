@@ -1,7 +1,7 @@
 import { Article } from ".";
 
-const Home = ({ posts }) => {
-  return <Article posts={posts} />;
+const Home = () => {
+  return <div className="text-slate-700">home</div>;
 };
 
 export default Home;

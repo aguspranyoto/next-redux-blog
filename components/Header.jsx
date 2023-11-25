@@ -1,15 +1,11 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <header className="bg-base-200">
       <nav className="max-w-screen-lg mx-auto items-center flex border-b border-gray-300 bg-base-100 justify-between text-slate-700 relative">
-        <div className="drawer">
+        <div className="drawer z-10">
           <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content flex flex-col">
             <div className="w-full navbar px-6 bg-base-100">
@@ -43,8 +39,8 @@ const Header = () => {
               <div className="flex-none hidden md:block">
                 <ul className=" menu menu-horizontal space-x-6">
                   {/* Navbar menu content here */}
-                  <Link href={"/add"}>Add Post</Link>
                   <Link href={"/"}>Home</Link>
+                  <Link href={"/admin"}>Admin</Link>
                 </ul>
               </div>
             </div>
@@ -55,14 +51,20 @@ const Header = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu p-4 w-80 min-h-full bg-base-200">
+            <ul className="menu p-8 w-80 min-h-full bg-base-100">
               {/* Sidebar content here */}
-              <li>
-                <a>Sidebar Item 1</a>
-              </li>
-              <li>
-                <a>Sidebar Item 2</a>
-              </li>
+              <Link
+                href={"/"}
+                className="text-slate-700 text-xl font-medium py-6 border-b border-gray-300"
+              >
+                Home
+              </Link>
+              <Link
+                href={"/admin"}
+                className="text-slate-700 text-xl font-medium py-6 border-b border-gray-300"
+              >
+                Admin
+              </Link>
             </ul>
           </div>
         </div>
