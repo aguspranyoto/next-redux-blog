@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header className="bg-base-200">
       <nav className="max-w-screen-lg mx-auto items-center flex border-b border-gray-300 bg-base-100 justify-between text-slate-700 relative">
-        <div className="drawer z-10">
+        <div className="drawer z-50">
           <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content flex flex-col">
             <div className="w-full navbar px-6 bg-base-100">
@@ -41,11 +41,12 @@ const Header = () => {
                   {/* Navbar menu content here */}
                   <Link href={"/"}>Home</Link>
                   <Link href={"/admin"}>Admin</Link>
+                  <Link href={"/studio"}>Studio</Link>
                 </ul>
               </div>
             </div>
           </div>
-          <div className="drawer-side">
+          <div className="drawer-side z-50">
             <label
               htmlFor="my-drawer-3"
               aria-label="close sidebar"
@@ -64,6 +65,12 @@ const Header = () => {
                 className="text-slate-700 text-xl font-medium py-6 border-b border-gray-300"
               >
                 Admin
+              </Link>
+              <Link
+                href={"/studio"}
+                className="text-slate-700 text-xl font-medium py-6 border-b border-gray-300"
+              >
+                Studio
               </Link>
             </ul>
           </div>

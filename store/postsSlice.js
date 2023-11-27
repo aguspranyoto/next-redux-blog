@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import StatusCode from "@/utils/StatusCode";
 
 const addPost = async (postData) => {
-  const response = await fetch("http://localhost:8800/posts", {
+  const response = await fetch("/api/posts", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -12,6 +12,22 @@ const addPost = async (postData) => {
 
   if (!response.ok) {
     throw new Error("Failed to add post");
+  }
+
+  return response.json();
+};
+
+const addComment = async (id, commentData) => {
+  const response = await fetch(`http://localhost:8800/posts/${id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(commentData),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to add comment");
   }
 
   return response.json();
@@ -52,7 +68,7 @@ const deletePost = async (id) => {
 
 // Membuat async thunk untuk fetch data
 export const getPosts = createAsyncThunk("posts/get", async () => {
-  const data = await fetch("http://localhost:8800/posts");
+  const data = await fetch("/api/posts");
   const result = await data.json();
 
   return result;
@@ -60,7 +76,7 @@ export const getPosts = createAsyncThunk("posts/get", async () => {
 
 // Membuat async thunk untuk fetch data
 export const getPostDetail = createAsyncThunk("posts/id", async (id) => {
-  const data = await fetch(`http://localhost:8800/posts/${id}`);
+  const data = await fetch(`/api/posts/${id}`);
   const result = await data.json();
 
   return result;
@@ -79,6 +95,14 @@ export const updatePostAsync = createAsyncThunk(
   "posts/updatePost",
   async ({ id, postData }) => {
     const response = await updatePost(id, postData);
+    return response;
+  }
+);
+
+export const addCommentAsync = createAsyncThunk(
+  "posts/addComment",
+  async ({ id, commentData }) => {
+    const response = await addComment(id, commentData);
     return response;
   }
 );

@@ -1,4 +1,4 @@
-import { Popular, Recent, ArticleDetail } from "@/components";
+import { Popular, Recent, ArticleDetail, AddComment } from "@/components";
 
 export default async function detail({ params }) {
   const id = params.id;
@@ -9,6 +9,7 @@ export default async function detail({ params }) {
         <article className="w-full md:w-4/6 pt-6">
           <div>
             <ArticleDetail id={id} />
+            <AddComment id={id} />
           </div>
         </article>
         <div className="w-full md:w-2/6">

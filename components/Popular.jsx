@@ -11,19 +11,21 @@ import StatusCode from "@/utils/StatusCode";
 
 const Popular = () => {
   const dispatch = useDispatch();
-  const { data: posts, status } = useSelector((state) => state.posts);
+  const { data, status } = useSelector((state) => state.posts);
+  const posts = data.data || [];
 
   useEffect(() => {
     dispatch(getPosts());
   }, []);
 
   const filterPostinganTerpopuler = (posts) => {
-    // Menyalin data agar tidak memodifikasi data asli
-    const copiedData = JSON.parse(JSON.stringify(posts)); // Mengurutkan postingan berdasarkan jumlah komentar secara menurun
-    copiedData.sort((a, b) => b.comments.length - a.comments.length); // Mengambil tiga postingan pertama
+    const copiedData = JSON.parse(JSON.stringify(posts));
+    copiedData.sort((a, b) => b.comments.length - a.comments.length);
     const limaPostinganTerpopuler = copiedData.slice(0, 5);
     return limaPostinganTerpopuler;
   };
+
+  const popular = filterPostinganTerpopuler(posts);
 
   if (status === StatusCode.LOADING) {
     return (
@@ -64,37 +66,38 @@ const Popular = () => {
         <h3 className="text-base-100 text-sm">Terpopuler</h3>
       </div>
       <div className="bg-base-100 p-2">
-        {filterPostinganTerpopuler(posts).map(
-          (item, i) =>
-            i < 5 && (
-              <div
-                className="text-slate-700 mb-2 flex gap-1 items-center"
-                key={item.id}
-              >
-                <div className="w-20 flex-none">
-                  <Link href={`/detail/${item.id}`}>
-                    {item.image && (
-                      <Image
-                        src={item.image}
-                        width={100}
-                        height={100}
-                        className="aspect-w-3 aspect-h-4"
-                        alt="popular image"
-                      />
-                    )}
-                  </Link>
+        {popular &&
+          popular.map(
+            (item, i) =>
+              i < 5 && (
+                <div
+                  className="text-slate-700 mb-2 flex gap-1 items-center"
+                  key={item.id}
+                >
+                  <div className="w-20 flex-none">
+                    <Link href={`/detail/${item.id}`}>
+                      {item.image && (
+                        <Image
+                          src={item.image}
+                          width={100}
+                          height={100}
+                          className="aspect-w-3 aspect-h-4"
+                          alt="popular image"
+                        />
+                      )}
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href={`/detail/${item.id}`}>
+                      <p className="text-md">{item.title}</p>
+                    </Link>
+                    <Link href={`/detail/${item.id}`}>
+                      <span className="text-xs text-gray-300">{item.date}</span>
+                    </Link>
+                  </div>
                 </div>
-                <div>
-                  <Link href={`/detail/${item.id}`}>
-                    <p className="text-md">{item.title}</p>
-                  </Link>
-                  <Link href={`/detail/${item.id}`}>
-                    <span className="text-xs text-gray-300">{item.date}</span>
-                  </Link>
-                </div>
-              </div>
-            )
-        )}
+              )
+          )}
       </div>
     </div>
   );

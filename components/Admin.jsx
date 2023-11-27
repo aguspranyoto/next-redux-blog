@@ -10,7 +10,7 @@ function Admin() {
           Add New Post
         </Link>
       </div>
-      <Article />
+      <Article type="admin" />
     </div>
   );
 }

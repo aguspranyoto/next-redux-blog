@@ -9,7 +9,8 @@ import StatusCode from "@/utils/StatusCode";
 
 const Recent = () => {
   const dispatch = useDispatch();
-  const { data: posts, status } = useSelector((state) => state.posts);
+  const { data, status } = useSelector((state) => state.posts);
+  const posts = data.data || [];
 
   useEffect(() => {
     dispatch(getPosts());
@@ -56,37 +57,38 @@ const Recent = () => {
         <h3 className="text-base-100 text-sm">Recent</h3>
       </div>
       <div className="bg-base-100 p-2">
-        {recent.map(
-          (item, i) =>
-            i < 5 && (
-              <div
-                className="text-slate-700 mb-2 flex gap-1 items-center"
-                key={item.id}
-              >
-                <div className="w-20 flex-none">
-                  <Link href={`/detail/${item.id}`}>
-                    {item.image && (
-                      <Image
-                        src={item.image}
-                        width={100}
-                        height={100}
-                        className="aspect-w-3 aspect-h-4"
-                        alt="popular image"
-                      />
-                    )}
-                  </Link>
+        {recent &&
+          recent.map(
+            (item, i) =>
+              i < 5 && (
+                <div
+                  className="text-slate-700 mb-2 flex gap-1 items-center"
+                  key={item.id}
+                >
+                  <div className="w-20 flex-none">
+                    <Link href={`/detail/${item.id}`}>
+                      {item.image && (
+                        <Image
+                          src={item.image}
+                          width={100}
+                          height={100}
+                          className="aspect-w-3 aspect-h-4"
+                          alt="popular image"
+                        />
+                      )}
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href={`/detail/${item.id}`}>
+                      <p className="text-md">{item.title}</p>
+                    </Link>
+                    <Link href={`/detail/${item.id}`}>
+                      <span className="text-xs text-gray-300">{item.date}</span>
+                    </Link>
+                  </div>
                 </div>
-                <div>
-                  <Link href={`/detail/${item.id}`}>
-                    <p className="text-md">{item.title}</p>
-                  </Link>
-                  <Link href={`/detail/${item.id}`}>
-                    <span className="text-xs text-gray-300">{item.date}</span>
-                  </Link>
-                </div>
-              </div>
-            )
-        )}
+              )
+          )}
       </div>
     </div>
   );

@@ -6,27 +6,26 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts, deletePostAsync } from "@/store/postsSlice";
 import StatusCode from "@/utils/StatusCode";
+import { Toaster, toast } from "react-hot-toast";
 
 function Article({ type }) {
   const dispatch = useDispatch();
-  const { data: posts, status } = useSelector((state) => state.posts);
-
-  const handleDelete = (id) => {
-    // Show a confirmation dialog
-    const isConfirmed = window.confirm(
-      "Are you sure you want to delete this post?"
-    );
-
-    // If the user confirms, proceed with deletion
-    if (isConfirmed) {
-      // Dispatch the deletePostAsync action with the post ID
-      dispatch(deletePostAsync(id));
-    }
-  };
+  const { data, status } = useSelector((state) => state.posts);
+  const posts = data.data;
 
   useEffect(() => {
     dispatch(getPosts());
   }, []);
+
+  const handleDelete = (id) => {
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this post?"
+    );
+
+    if (isConfirmed) {
+      dispatch(deletePostAsync(id));
+    }
+  };
 
   if (status === StatusCode.LOADING) {
     return (
@@ -71,10 +70,25 @@ function Article({ type }) {
           >
             <div className="flex justify-between items-center gap-6">
               <div>
-                <h3 className="text-sm font-bold text-slate-700">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-slate-700">{item.body}</p>
+                {type == "admin" ? (
+                  <>
+                    <h3 className="text-sm font-bold text-slate-700">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-700">{item.body}</p>
+                  </>
+                ) : (
+                  <>
+                    <Link href={`detail/${item.id}`}>
+                      <h3 className="text-sm font-bold text-slate-700">
+                        {item.title}
+                      </h3>
+                    </Link>
+                    <Link href={`detail/${item.id}`}>
+                      <p className="text-xs text-slate-700">{item.body}</p>
+                    </Link>
+                  </>
+                )}
               </div>
 
               <div className="flex gap-1">
@@ -96,6 +110,7 @@ function Article({ type }) {
                   ""
                 )}
               </div>
+              <Toaster />
             </div>
           </div>
         ))}

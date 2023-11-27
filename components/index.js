@@ -7,7 +7,9 @@ import ArticleDetail from "./ArticleDetail";
 import Home from "./Home";
 import PostForm from "./PostForm";
 import Comments from "./Comments";
+import AddComment from "./AddComment";
 import Admin from "./Admin";
+import CommentForm from "./CommentForm";
 
 export {
   Header,
@@ -20,4 +22,6 @@ export {
   PostForm,
   Comments,
   Admin,
+  AddComment,
+  CommentForm,
 };

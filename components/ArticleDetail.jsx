@@ -11,6 +11,9 @@ import { Comments } from "../components";
 export default function ArticleDetail({ id }) {
   const dispatch = useDispatch();
   const { dataDetail: posts, status } = useSelector((state) => state.posts);
+
+  const postDetail = posts.data || [];
+
   useEffect(() => {
     dispatch(getPostDetail(id));
   }, []);
@@ -49,23 +52,25 @@ export default function ArticleDetail({ id }) {
   }
   return (
     <>
-      <div className="text-slate-700" key={posts.id}>
+      <div className="text-slate-700" key={postDetail.id}>
         <div className=" mb-6">
-          <h3 className="text-2xl font-bold mb-4">{posts.title}</h3>
+          <h3 className="text-2xl font-bold mb-4">{postDetail.title}</h3>
           <div className="overflow-hidden w-full mb-4">
-            <Image
-              src={posts.image}
-              alt="post detail image"
-              width={100}
-              height={100}
-              className="object-cover w-full h-56"
-            />
+            {postDetail.image && (
+              <Image
+                src={postDetail.image}
+                alt="post detail image"
+                width={100}
+                height={100}
+                className="object-cover w-full h-56"
+              />
+            )}
           </div>
-          <p className="text-xs text-gray-300 mb-4">{posts.date}</p>
-          <p className="text-md ">{posts.body}</p>
+          <p className="text-xs text-gray-300 mb-4">{postDetail.date}</p>
+          <p className="text-md ">{postDetail.body}</p>
         </div>
         <div>
-          <Comments posts={posts} />
+          <Comments posts={postDetail} />
         </div>
       </div>
     </>
